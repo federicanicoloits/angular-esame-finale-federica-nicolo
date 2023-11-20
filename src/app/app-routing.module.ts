@@ -8,7 +8,7 @@ const routes: Routes = [
   { path: 'home', component: HomeComponent },
   { path: '', redirectTo: '/home', pathMatch: 'full' },
   {
-    path: 'home/dettaglio/lat=:lat?lon=:lon',
+    path: 'home/dettaglio/:lat/:lon',
     component: DettaglioComponent,
     resolve: {
       Dettaglio: (route: ActivatedRouteSnapshot) => {
