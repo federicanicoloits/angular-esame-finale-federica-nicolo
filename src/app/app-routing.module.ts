@@ -17,6 +17,12 @@ const routes: Routes = [
           route.paramMap.get('lon')!
         );
       },
+      UltimiDatiDettaglio: (route: ActivatedRouteSnapshot) => {
+        return inject(MeteoService).getSearchForLatAndLonUltimiDati(
+          route.paramMap.get('lat')!,
+          route.paramMap.get('lon')!
+        );
+      },
     },
   },
 ];

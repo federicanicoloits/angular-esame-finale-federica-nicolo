@@ -11,3 +11,19 @@ export interface AlbaTramonto {
   timezone: string;
   utc_offset: number;
 }
+
+export interface DatiMeteo {
+  cloudcover: number;
+  cloudcoverpng: string;
+  lifted_index: number;
+  prec_type: string;
+  rh2m: number;
+  seeing: number;
+  temp2m: number;
+  timepoint: number;
+  transparency: number;
+  wind10m: {
+    direction: string;
+    speed: number;
+  };
+}

@@ -1,7 +1,26 @@
 <div class="container">
-  <div class="row vh-100 justify-content-center align-items-center">
+  <div class="row">
     <div class="col col-12">
-      Alba: {{ meteoObj.sunrise }} - Tramonto {{ meteoObj.sunset }}
+      <h1>
+        Alba: {{ albaTramontoObj.sunrise }} - Tramonto
+        {{ albaTramontoObj.sunset }}
+      </h1>
+      <table class="table table-primary table-striped">
+        <thead>
+          <tr>
+            <th>Timepoint</th>
+            <th>Temp2m</th>
+            <th>Cloud Cover</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let meteoVar of meteoObj">
+            <td>{{ meteoVar.timepoint }}</td>
+            <td>{{ meteoVar.temp2m }}</td>
+            <td><img [src]="meteoVar.cloudcoverpng" alt="" /></td>
+          </tr>
+        </tbody>
+      </table>
     </div>
   </div>
 </div>
