@@ -19,13 +19,14 @@ export class MeteoService {
     return this.apiService.searchForLatAndLonUltimiDati(lat, lon).pipe(
       map((response: any) => {
         response.dataseries.forEach((element: any) => {
-          const baseCloudCover = 'https://www.7timer.info/img/misc/';
-          if (element.cloudcover <= 2) {
-            element.cloudcoverpng = baseCloudCover + 'about_two_clear.png';
-          } else if (element.cloudcover > 2 || element.cloudcover <= 8) {
-            element.cloudcoverpng = baseCloudCover + 'about_two_pcloudy.png';
+          const baseCloudCover =
+            'https://www.7timer.info/img/misc/about_civil_';
+          if (element.cloudcover < 2) {
+            element.cloudcoverpng = baseCloudCover + 'clear.png';
+          } else if (element.cloudcover >= 2 || element.cloudcover <= 8) {
+            element.cloudcoverpng = baseCloudCover + 'pcloudy.png';
           } else {
-            element.cloudcoverpng = baseCloudCover + 'about_two_cloudy.png';
+            element.cloudcoverpng = baseCloudCover + 'cloudy.png';
           }
         });
         return response.dataseries as DatiMeteo[];
