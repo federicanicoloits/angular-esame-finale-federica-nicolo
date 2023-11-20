@@ -16,8 +16,11 @@ export class DettaglioComponent implements OnInit {
       this.albaTramontoObj = Dettaglio;
     });
     this.activatedRoute.data.subscribe(({ UltimiDatiDettaglio }) => {
-      console.log(UltimiDatiDettaglio);
       this.meteoObj = UltimiDatiDettaglio;
     });
+  }
+  FunctionForPng(cloudcover: number) {
+    if (cloudcover < 2) {
+    }
   }
 }

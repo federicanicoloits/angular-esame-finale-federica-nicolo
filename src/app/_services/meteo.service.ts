@@ -18,7 +18,6 @@ export class MeteoService {
   getSearchForLatAndLonUltimiDati(lat: string, lon: string) {
     return this.apiService.searchForLatAndLonUltimiDati(lat, lon).pipe(
       map((response: any) => {
-        console.log(response);
         response.dataseries.forEach((element: any) => {
           const baseCloudCover = 'https://www.7timer.info/img/misc/';
           if (element.cloudcover <= 2) {
