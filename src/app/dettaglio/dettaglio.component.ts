@@ -19,8 +19,4 @@ export class DettaglioComponent implements OnInit {
       this.meteoObj = UltimiDatiDettaglio;
     });
   }
-  FunctionForPng(cloudcover: number) {
-    if (cloudcover < 2) {
-    }
-  }
 }
