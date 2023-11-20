@@ -11,14 +11,14 @@ const routes: Routes = [
     path: 'home/dettaglio/:lat/:lon',
     component: DettaglioComponent,
     resolve: {
-      Dettaglio: (route: ActivatedRouteSnapshot) => {
-        return inject(MeteoService).getSearchForLatAndLon(
+      AlbaETramontoDettaglio: (route: ActivatedRouteSnapshot) => {
+        return inject(MeteoService).getSearchAlbaETramonto(
           route.paramMap.get('lat')!,
           route.paramMap.get('lon')!
         );
       },
-      UltimiDatiDettaglio: (route: ActivatedRouteSnapshot) => {
-        return inject(MeteoService).getSearchForLatAndLonUltimiDati(
+      DatiMeteoDettaglio: (route: ActivatedRouteSnapshot) => {
+        return inject(MeteoService).getSearchDatiMeteo(
           route.paramMap.get('lat')!,
           route.paramMap.get('lon')!
         );

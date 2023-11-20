@@ -6,12 +6,12 @@ import { Injectable } from '@angular/core';
 })
 export class ApiService {
   constructor(private http: HttpClient) {}
-  searchForLatAndLon(lat: string, lon: string) {
+  searchAlbaETramonto(lat: string, lon: string) {
     return this.http.get(
       'https://api.sunrisesunset.io/json?lat=' + lat + '&lng=' + lon
     );
   }
-  searchForLatAndLonUltimiDati(lat: string, lon: string) {
+  searchDatiMeteo(lat: string, lon: string) {
     return this.http.get(
       'https://www.7timer.info/bin/astro.php?lon=' +
         lon +

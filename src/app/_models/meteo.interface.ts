@@ -14,7 +14,7 @@ export interface AlbaTramonto {
 
 export interface DatiMeteo {
   cloudcover: number;
-  cloudcoverpng: string;
+  png: string;
   lifted_index: number;
   prec_type: string;
   rh2m: number;

@@ -12,11 +12,11 @@ export class DettaglioComponent implements OnInit {
   meteoObj: DatiMeteo[] = [];
   constructor(private activatedRoute: ActivatedRoute) {}
   ngOnInit(): void {
-    this.activatedRoute.data.subscribe(({ Dettaglio }) => {
-      this.albaTramontoObj = Dettaglio;
+    this.activatedRoute.data.subscribe(({ AlbaETramontoDettaglio }) => {
+      this.albaTramontoObj = AlbaETramontoDettaglio;
     });
-    this.activatedRoute.data.subscribe(({ UltimiDatiDettaglio }) => {
-      this.meteoObj = UltimiDatiDettaglio;
+    this.activatedRoute.data.subscribe(({ DatiMeteoDettaglio }) => {
+      this.meteoObj = DatiMeteoDettaglio;
     });
   }
 }

@@ -8,27 +8,41 @@ import { AlbaTramonto, DatiMeteo } from '../_models/meteo.interface';
 })
 export class MeteoService {
   constructor(private apiService: ApiService) {}
-  getSearchForLatAndLon(lat: string, lon: string) {
-    return this.apiService.searchForLatAndLon(lat, lon).pipe(
+  getSearchAlbaETramonto(lat: string, lon: string) {
+    return this.apiService.searchAlbaETramonto(lat, lon).pipe(
       map((response: any) => {
         return response.results as AlbaTramonto;
       })
     );
   }
-  getSearchForLatAndLonUltimiDati(lat: string, lon: string) {
-    return this.apiService.searchForLatAndLonUltimiDati(lat, lon).pipe(
+  getSearchDatiMeteo(lat: string, lon: string) {
+    return this.apiService.searchDatiMeteo(lat, lon).pipe(
       map((response: any) => {
         response.dataseries.forEach((element: any) => {
-          const baseCloudCover =
-            'https://www.7timer.info/img/misc/about_civil_';
-          if (element.cloudcover < 2) {
-            element.cloudcoverpng = baseCloudCover + 'clear.png';
-          } else if (element.cloudcover >= 2 || element.cloudcover <= 8) {
-            element.cloudcoverpng = baseCloudCover + 'pcloudy.png';
+          const baseUrlWeather = 'https://www.7timer.info/img/misc/about_two_';
+          if (element.prec_type === 'none') {
+            if (element.lifted_index >= -5) {
+              if (element.cloudcover < 2) {
+                element.png = baseUrlWeather + 'clear.png';
+              } else if (element.cloudcover >= 2 && element.cloudcover <= 8) {
+                element.png = baseUrlWeather + 'pcloudy.png';
+              } else if (element.cloudcover > 8) {
+                element.png = baseUrlWeather + 'cloudy.png';
+              }
+            } else {
+              element.png = baseUrlWeather + 'ts.png';
+            }
+          } else if (element.prec_type === 'rain') {
+            if (element.lifted_index >= -5) {
+              element.png = baseUrlWeather + 'rain.png';
+            } else {
+              element.png = baseUrlWeather + 'tsrain.png';
+            }
           } else {
-            element.cloudcoverpng = baseCloudCover + 'cloudy.png';
+            element.png = baseUrlWeather + 'snow.png';
           }
         });
+        console.log(response.dataseries);
         return response.dataseries as DatiMeteo[];
       })
     );

@@ -9,15 +9,15 @@
         <thead>
           <tr>
             <th>Timepoint</th>
-            <th>Temp2m</th>
-            <th>Cloud Cover</th>
+            <th>Temperatura in Celsius</th>
+            <th>Previsioni del Tempo</th>
           </tr>
         </thead>
         <tbody>
           <tr *ngFor="let meteoVar of meteoObj">
             <td>{{ meteoVar.timepoint }}</td>
-            <td>{{ meteoVar.temp2m }}</td>
-            <td><img [src]="meteoVar.cloudcoverpng" alt="" /></td>
+            <td>{{ meteoVar.temp2m }}°</td>
+            <td><img [src]="meteoVar.png" alt="" /></td>
           </tr>
         </tbody>
       </table>
