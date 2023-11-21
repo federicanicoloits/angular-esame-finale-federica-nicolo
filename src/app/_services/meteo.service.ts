@@ -11,6 +11,19 @@ export class MeteoService {
   getSearchAlbaETramonto(lat: string, lon: string) {
     return this.apiService.searchAlbaETramonto(lat, lon).pipe(
       map((response: any) => {
+        response.results.sunsetsunrise =
+          'Alba: ' +
+          response.results.sunrise.split(':')[0].padStart(2, '0') +
+          ':' +
+          response.results.sunrise.split(':')[1].padStart(2, '0') +
+          ':' +
+          response.results.sunrise.split(':')[2].padStart(2, '0') +
+          ' Tramonto: ' +
+          response.results.sunset.split(':')[0].padStart(2, '0') +
+          ':' +
+          response.results.sunset.split(':')[1].padStart(2, '0') +
+          ':' +
+          response.results.sunset.split(':')[2].padStart(2, '0');
         return response.results as AlbaTramonto;
       })
     );
@@ -18,8 +31,24 @@ export class MeteoService {
   getSearchDatiMeteo(lat: string, lon: string) {
     return this.apiService.searchDatiMeteo(lat, lon).pipe(
       map((response: any) => {
+        const today = new Date();
+        const baseUrlWeather = 'https://www.7timer.info/img/misc/about_two_';
         response.dataseries.forEach((element: any) => {
-          const baseUrlWeather = 'https://www.7timer.info/img/misc/about_two_';
+          let date = today;
+          date.setHours(date.getHours() + element.timepoint);
+          element.timepointdate = date;
+          element.timepointstring =
+            date.getDate().toString().padStart(2, '0') +
+            '/' +
+            (date.getMonth() + 1).toString().padStart(2, '0') +
+            '/' +
+            date.getFullYear() +
+            ' ' +
+            date.getHours().toString().padStart(2, '0') +
+            ':' +
+            date.getMinutes().toString().padStart(2, '0') +
+            ':' +
+            date.getSeconds().toString().padStart(2, '0');
           if (element.prec_type === 'none') {
             if (element.lifted_index >= -5) {
               if (element.cloudcover <= 2) {

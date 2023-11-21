@@ -1,6 +1,13 @@
 export interface AlbaTramonto {
   sunrise: string;
   sunset: string;
+  sunriseore: string;
+  sunsetore: string;
+  sunriseminuti: string;
+  sunsetminuti: string;
+  sunrisetsecondi: string;
+  sunsetsecondi: string;
+  sunsetsunrise: string;
   first_light: string;
   last_light: string;
   dawn: string;
@@ -21,6 +28,8 @@ export interface DatiMeteo {
   seeing: number;
   temp2m: number;
   timepoint: number;
+  timepointstring: string;
+  timepointdate: Date;
   transparency: number;
   wind10m: {
     direction: string;
