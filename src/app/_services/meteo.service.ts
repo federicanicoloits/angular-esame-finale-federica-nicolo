@@ -22,11 +22,11 @@ export class MeteoService {
           const baseUrlWeather = 'https://www.7timer.info/img/misc/about_two_';
           if (element.prec_type === 'none') {
             if (element.lifted_index >= -5) {
-              if (element.cloudcover < 2) {
+              if (element.cloudcover <= 2) {
                 element.png = baseUrlWeather + 'clear.png';
-              } else if (element.cloudcover >= 2 && element.cloudcover <= 8) {
+              } else if (element.cloudcover > 2 && element.cloudcover < 8) {
                 element.png = baseUrlWeather + 'pcloudy.png';
-              } else if (element.cloudcover > 8) {
+              } else if (element.cloudcover >= 8) {
                 element.png = baseUrlWeather + 'cloudy.png';
               }
             } else {
