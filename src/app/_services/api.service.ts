@@ -20,4 +20,13 @@ export class ApiService {
         '&ac=0&unit=metric&output=json&tzshift=0'
     );
   }
+  searchCity(lat: string, lon: string) {
+    return this.http.get(
+      'https://api.bigdatacloud.net/data/reverse-geocode-client?latitude=' +
+        lat +
+        '&longitude=' +
+        lon +
+        '&localityLanguage=it'
+    );
+  }
 }

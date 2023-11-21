@@ -11,19 +11,6 @@ export class MeteoService {
   getSearchAlbaETramonto(lat: string, lon: string) {
     return this.apiService.searchAlbaETramonto(lat, lon).pipe(
       map((response: any) => {
-        response.results.sunsetsunrise =
-          'Alba: ' +
-          response.results.sunrise.split(':')[0].padStart(2, '0') +
-          ':' +
-          response.results.sunrise.split(':')[1].padStart(2, '0') +
-          ':' +
-          response.results.sunrise.split(':')[2].padStart(2, '0') +
-          ' Tramonto: ' +
-          response.results.sunset.split(':')[0].padStart(2, '0') +
-          ':' +
-          response.results.sunset.split(':')[1].padStart(2, '0') +
-          ':' +
-          response.results.sunset.split(':')[2].padStart(2, '0');
         return response.results as AlbaTramonto;
       })
     );
@@ -73,6 +60,13 @@ export class MeteoService {
         });
         console.log(response.dataseries);
         return response.dataseries as DatiMeteo[];
+      })
+    );
+  }
+  getSearchByCity(lat: string, lon: string) {
+    return this.apiService.searchCity(lat, lon).pipe(
+      map((response: any) => {
+        return response.city as string;
       })
     );
   }

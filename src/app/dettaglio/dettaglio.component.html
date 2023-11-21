@@ -1,9 +1,23 @@
 <div class="container">
   <div class="row">
     <div class="col col-12">
-      <h1>
-        {{ albaTramontoObj.sunsetsunrise }}
-      </h1>
+      <h1 class="text-primary text-center">{{ city }}</h1>
+      <h2 class="text-center">
+        <strong>Latitudine:</strong> {{ lat }} - <strong>Longitudine: </strong
+        >{{ lon }}
+      </h2>
+      <div class="d-flex align-items-center justify-content-center">
+        <div class="d-flex flex-column mx-5">
+          <img src="assets/alba.png" class="img-fluid" alt="" />
+          <h3 class="text-center">Alba</h3>
+          <h4>{{ albaTramontoObj.sunrise }}</h4>
+        </div>
+        <div class="d-flex flex-column mx-5">
+          <img src="assets/tramonto.png" class="img-fluid" alt="" />
+          <h3 class="text-center">Tramonto</h3>
+          <h4>{{ albaTramontoObj.sunset }}</h4>
+        </div>
+      </div>
       <table class="table table-primary table-striped">
         <thead>
           <tr>

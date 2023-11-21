@@ -10,15 +10,23 @@ import { AlbaTramonto, DatiMeteo } from '../_models/meteo.interface';
 export class DettaglioComponent implements OnInit {
   albaTramontoObj!: AlbaTramonto;
   meteoObj: DatiMeteo[] = [];
-  tramonto: string = '';
+  lat = '';
+  lon = '';
+  city = '';
   constructor(private activatedRoute: ActivatedRoute) {}
   ngOnInit(): void {
     this.activatedRoute.data.subscribe(({ AlbaETramontoDettaglio }) => {
       this.albaTramontoObj = AlbaETramontoDettaglio;
-      this.tramonto = this.albaTramontoObj.sunset;
     });
     this.activatedRoute.data.subscribe(({ DatiMeteoDettaglio }) => {
       this.meteoObj = DatiMeteoDettaglio;
+    });
+    this.activatedRoute.data.subscribe(({ City }) => {
+      this.city = City;
+    });
+    this.activatedRoute.params.subscribe((params) => {
+      this.lat = params['lat'];
+      this.lon = params['lon'];
     });
   }
 }

@@ -23,6 +23,12 @@ const routes: Routes = [
           route.paramMap.get('lon')!
         );
       },
+      City: (route: ActivatedRouteSnapshot) => {
+        return inject(MeteoService).getSearchByCity(
+          route.paramMap.get('lat')!,
+          route.paramMap.get('lon')!
+        );
+      },
     },
   },
 ];
