@@ -26,11 +26,15 @@
         <button
           class="btn btn-primary text-white"
           [routerLink]="'/home/dettaglio/' + lat + '/' + lon"
+          [disabled]="!InputValidation()"
         >
           Cerca
         </button>
       </form>
       <div class="d-flex justify-content-center">
+        <h2 class="text-center text-primary">
+          Suggeriti <i class="fa-solid fa-arrow-right"></i>
+        </h2>
         <button
           class="btn btn-primary mx-3 text-white"
           [routerLink]="'/home/dettaglio/45.070312/7.6868565'"
