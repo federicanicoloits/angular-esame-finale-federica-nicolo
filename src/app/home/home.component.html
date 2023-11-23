@@ -2,6 +2,15 @@
   <div class="row vh-100 justify-content-center align-items-center">
     <div class="col-12">
       <h1 class="text-center text-primary">WeatherApp</h1>
+      <p>
+        Inserisci le coordinate di latitutine e longitudine della tua città!
+        <br />
+        N.B. Ricorda che se non inserisci coordinate valide il bottone è
+        disattivato.
+        <strong>Cosa significa coordinate valide?</strong> La latitudine è
+        compresa tra -90 e +90, mentre la longitudine ha valore massimo -180 e
+        +180.
+      </p>
       <form novalidate>
         <div class="mb-3">
           <label for="lat" class="form-label">Latitudine</label>
@@ -24,7 +33,7 @@
           />
         </div>
         <button
-          class="btn btn-primary text-white"
+          class="btn btn-secondary text-white"
           [routerLink]="'/home/dettaglio/' + lat + '/' + lon"
           [disabled]="!InputValidation()"
         >

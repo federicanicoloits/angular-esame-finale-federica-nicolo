@@ -1,6 +1,10 @@
-$primary: rgb(30, 0, 255);
+$primary: rgb(39, 18, 199);
+$secondary: rgb(121, 107, 214);
 @import "../node_modules/bootstrap-scss/bootstrap.scss";
 
 table {
   text-align: center;
+}
+.text-white-secondary {
+  color: rgb(201, 197, 197);
 }
