@@ -5,20 +5,56 @@
         Torna alla Home
       </button>
       <h1 class="text-primary text-center">{{ city }}</h1>
-      <h2 class="text-center">
+      <h1 class="text-center text-primary" *ngIf="!city">
         <strong>Latitudine:</strong> {{ lat }} - <strong>Longitudine: </strong
         >{{ lon }}
-      </h2>
+      </h1>
       <div class="d-flex align-items-center justify-content-center">
         <div class="d-flex flex-column mx-5">
           <img src="assets/alba.png" class="img-fluid" alt="" />
-          <h3 class="text-center">Alba</h3>
-          <h4>{{ albaTramontoObj.sunrise }}</h4>
+          <h2 class="text-center">Alba</h2>
+          <h3>{{ albaTramontoObj.sunrise }}</h3>
         </div>
         <div class="d-flex flex-column mx-5">
           <img src="assets/tramonto.png" class="img-fluid" alt="" />
-          <h3 class="text-center">Tramonto</h3>
-          <h4>{{ albaTramontoObj.sunset }}</h4>
+          <h2 class="text-center">Tramonto</h2>
+          <h3>{{ albaTramontoObj.sunset }}</h3>
+        </div>
+      </div>
+      <h2>Tempo</h2>
+      <div
+        class="border border-primary p-3 d-flex flex-wrap justify-content-center"
+      >
+        <div>
+          Soleggiato
+          <img src="https://7timer.info/img/misc/about_two_clear.png" alt="" />
+        </div>
+        <div>
+          Parzialmente nuvoloso
+          <img
+            src="https://7timer.info/img/misc/about_two_pcloudy.png"
+            alt=""
+          />
+        </div>
+        <div>
+          Nuvoloso
+          <img src="https://7timer.info/img/misc/about_two_cloudy.png" alt="" />
+        </div>
+        <div>
+          Pioggia
+          <img src="https://7timer.info/img/misc/about_two_rain.png" alt="" />
+        </div>
+        <div>
+          Neve
+          <img src="https://7timer.info/img/misc/about_two_snow.png" alt="" />
+        </div>
+        <div>
+          Con Fulmini
+          <img src="https://7timer.info/img/misc/about_two_ts.png" alt="" />
+        </div>
+        <div>
+          Pioggia con Fulmini
+          <img src="https://7timer.info/img/misc/about_two_tsrain.png" alt="" />
         </div>
       </div>
       <table class="table table-primary table-striped">
