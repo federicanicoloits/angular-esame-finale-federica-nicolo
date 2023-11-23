@@ -4,7 +4,7 @@
       <button class="btn btn-primary text-white mt-3" routerLink="">
         Torna alla Home
       </button>
-      <h1 class="text-primary text-center">{{ city }}</h1>
+      <h1 class="text-primary text-center" *ngIf="city">{{ city }}</h1>
       <h1 class="text-center text-primary" *ngIf="!city">
         <strong>Latitudine:</strong> {{ lat }} - <strong>Longitudine: </strong
         >{{ lon }}
