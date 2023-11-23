@@ -15,11 +15,11 @@ export class MeteoService {
       })
     );
   }
-  getSearchDatiMeteo(lat: string, lon: string) {
-    return this.apiService.searchDatiMeteo(lat, lon).pipe(
+  getSearchDatiMeteo(lat: string, lon: string, tipoChiamata: string) {
+    return this.apiService.searchDatiMeteo(lat, lon, tipoChiamata).pipe(
       map((response: any) => {
         const today = new Date();
-        const baseUrlWeather = 'https://www.7timer.info/img/misc/about_two_';
+        const baseUrlWeather = 'https://www.7timer.info/img/misc/about_';
         response.dataseries.forEach((element: any) => {
           let date = today;
           date.setHours(date.getHours() + element.timepoint);
@@ -36,29 +36,76 @@ export class MeteoService {
             date.getMinutes().toString().padStart(2, '0') +
             ':' +
             date.getSeconds().toString().padStart(2, '0');
-          if (element.prec_type === 'none') {
-            if (element.lifted_index >= -5) {
-              if (element.cloudcover <= 2) {
-                element.png = baseUrlWeather + 'clear.png';
-              } else if (element.cloudcover > 2 && element.cloudcover < 8) {
-                element.png = baseUrlWeather + 'pcloudy.png';
-              } else if (element.cloudcover >= 8) {
-                element.png = baseUrlWeather + 'cloudy.png';
+        });
+        if (tipoChiamata === 'astro') {
+          response.dataseries.forEach((element: any) => {
+            if (element.prec_type === 'none') {
+              if (element.lifted_index >= -5) {
+                if (element.cloudcover <= 2) {
+                  element.png = baseUrlWeather + 'two_clear.png';
+                } else if (element.cloudcover > 2 && element.cloudcover < 8) {
+                  element.png = baseUrlWeather + 'two_pcloudy.png';
+                } else if (element.cloudcover >= 8) {
+                  element.png = baseUrlWeather + 'two_cloudy.png';
+                }
+              } else {
+                element.png = baseUrlWeather + 'two_ts.png';
+              }
+            } else if (element.prec_type === 'two_rain') {
+              if (element.lifted_index >= -5) {
+                element.png = baseUrlWeather + 'two_rain.png';
+              } else {
+                element.png = baseUrlWeather + 'two_tsrain.png';
               }
             } else {
-              element.png = baseUrlWeather + 'ts.png';
+              element.png = baseUrlWeather + 'two_snow.png';
             }
-          } else if (element.prec_type === 'rain') {
-            if (element.lifted_index >= -5) {
-              element.png = baseUrlWeather + 'rain.png';
+          });
+        } else if (tipoChiamata === 'civil') {
+          response.dataseries.forEach((element: any) => {
+            if (element.weather.includes('clear')) {
+              element.png = baseUrlWeather + 'civil_clear.png';
+            } else if (element.weather.includes('cloudy')) {
+              if (element.weather.includes('pcloudy')) {
+                element.png = baseUrlWeather + 'civil_pcloudy.png';
+              } else if (element.weather.includes('mcloudy')) {
+                element.png = baseUrlWeather + 'civil_mcloudy.png';
+              } else {
+                element.png = baseUrlWeather + 'civil_cloudy.png';
+              }
+            } else if (element.weather.includes('humid')) {
+              element.png = baseUrlWeather + 'civil_fog.png';
+            } else if (element.weather.includes('rain')) {
+              if (element.weather.includes('lightrain')) {
+                element.png = baseUrlWeather + 'civil_lightrain.png';
+              } else if (element.weather.includes('rainsnow')) {
+                element.png = baseUrlWeather + 'civil_rainsnow.png';
+              } else if (element.weather.includes('tsrain')) {
+                element.png = baseUrlWeather + 'civil_tsrain.png';
+              } else {
+                element.png = baseUrlWeather + 'civil_rain.png';
+              }
+            } else if (
+              element.weather.includes('snow') &&
+              !element.weather.includes('rain')
+            ) {
+              if (element.weather.includes('lightsnow'))
+                element.png = baseUrlWeather + 'civil_lightsnow.png';
+              else {
+                element.png = baseUrlWeather + 'civil_snow.png';
+              }
+            }
+            if (element.weather.includes('shower')) {
+              if (element.weather.includes('ishower')) {
+                element.png = baseUrlWeather + 'civil_ishower.png';
+              } else {
+                element.png = baseUrlWeather + 'civil_oshower.png';
+              }
             } else {
-              element.png = baseUrlWeather + 'tsrain.png';
+              element.png = baseUrlWeather + 'civil_tstorm.png';
             }
-          } else {
-            element.png = baseUrlWeather + 'snow.png';
-          }
-        });
-        console.log(response.dataseries);
+          });
+        }
         return response.dataseries as DatiMeteo[];
       })
     );

@@ -33,10 +33,23 @@
             name="lon"
           />
         </div>
+        <div class="mb-3">
+          <label for="tipo" class="form-label">Scegli quali icone vedere</label>
+          <select
+            class="form-control"
+            id="tipo"
+            [(ngModel)]="tipo"
+            name="tipo"
+            (change)="onSelectChange()"
+          >
+            <option value="astro">Astro</option>
+            <option value="civil">Civil</option>
+          </select>
+        </div>
         <button
           class="btn btn-secondary text-white"
-          [routerLink]="'/home/dettaglio/' + lat + '/' + lon"
-          [disabled]="!InputValidation()"
+          [routerLink]="'/home/dettaglio/' + tipo + '/' + lat + '/' + lon"
+          [disabled]="!InputValidation() || !selectedOption"
         >
           Cerca
         </button>
@@ -47,13 +60,13 @@
         </h2>
         <button
           class="btn btn-primary mx-3 text-white"
-          routerLink="/home/dettaglio/45.070312/7.6868565"
+          routerLink="/home/dettaglio/astro/45.070312/7.6868565"
         >
           Torino
         </button>
         <button
           class="btn btn-primary mx-3 text-white"
-          routerLink="/home/dettaglio/40.779897/-73.968565"
+          routerLink="/home/dettaglio/astro/40.779897/-73.968565"
         >
           New York
         </button>

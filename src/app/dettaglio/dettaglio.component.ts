@@ -13,8 +13,12 @@ export class DettaglioComponent implements OnInit {
   lat = '';
   lon = '';
   city = '';
+  tipo = '';
   constructor(private activatedRoute: ActivatedRoute) {}
   ngOnInit(): void {
+    this.activatedRoute.params.subscribe((params) => {
+      this.tipo = params['tipo'];
+    });
     this.activatedRoute.data.subscribe(({ AlbaETramontoDettaglio }) => {
       this.albaTramontoObj = AlbaETramontoDettaglio;
     });

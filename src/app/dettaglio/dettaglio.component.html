@@ -21,9 +21,10 @@
           <h3>{{ albaTramontoObj.sunset }}</h3>
         </div>
       </div>
-      <h2>Tempo</h2>
+      <h2 class="text-center mt-2">Tempo</h2>
       <div
         class="border border-primary p-3 d-flex flex-wrap justify-content-center"
+        *ngIf="tipo !== 'civil'"
       >
         <div>
           Soleggiato
