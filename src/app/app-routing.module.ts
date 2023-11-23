@@ -8,7 +8,7 @@ const routes: Routes = [
   { path: 'home', component: HomeComponent },
   { path: '', redirectTo: '/home', pathMatch: 'full' },
   {
-    path: 'home/dettaglio/:lat/:lon',
+    path: 'home/dettaglio/:tipo/:lat/:lon',
     component: DettaglioComponent,
     resolve: {
       AlbaETramontoDettaglio: (route: ActivatedRouteSnapshot) => {
@@ -20,7 +20,8 @@ const routes: Routes = [
       DatiMeteoDettaglio: (route: ActivatedRouteSnapshot) => {
         return inject(MeteoService).getSearchDatiMeteo(
           route.paramMap.get('lat')!,
-          route.paramMap.get('lon')!
+          route.paramMap.get('lon')!,
+          route.paramMap.get('tipo')!
         );
       },
       City: (route: ActivatedRouteSnapshot) => {

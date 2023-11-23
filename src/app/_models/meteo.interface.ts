@@ -20,6 +20,7 @@ export interface AlbaTramonto {
 }
 
 export interface DatiMeteo {
+  weather: string;
   cloudcover: number;
   png: string;
   lifted_index: number;

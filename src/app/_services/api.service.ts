@@ -11,9 +11,11 @@ export class ApiService {
       'https://api.sunrisesunset.io/json?lat=' + lat + '&lng=' + lon
     );
   }
-  searchDatiMeteo(lat: string, lon: string) {
+  searchDatiMeteo(lat: string, lon: string, tipoChiamata: string) {
     return this.http.get(
-      'https://www.7timer.info/bin/astro.php?lon=' +
+      'https://www.7timer.info/bin/' +
+        tipoChiamata +
+        '.php?lon=' +
         lon +
         '&lat=' +
         lat +
